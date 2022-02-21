@@ -12,6 +12,6 @@ autocmd FileType python let python_highlight_all = 1
 autocmd FileType python set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 
-set textwidth=80
+set textwidth=180
 au BufNewFile,BufRead * exec 'match SpellRare /\%>' . &textwidth . 'v.\+/'
 au BufNewFile,BufRead * exec 'match PmenuSbar /\s\s*$/'
