@@ -1,5 +1,7 @@
 # syntax: bash
 
+export PATH="$HOME/.local/bin:$PATH"
+
 alias nuke-pyc='find ./$(git rev-parse --show-cdup) -name "*.pyc" -delete'
 #alias gl='git log --pretty=oneline'
 alias no-lc-env='unset $(env | grep LC_ | cut -f 1 -d '=' | xargs)'
@@ -70,6 +72,17 @@ if [ -d "$HOME/.pyenv" ]; then
     #eval "$(pyenv virtualenv-init -)"
 fi
 
+if [ -d "$HOME/.poetry" ]; then
+    export PATH="$HOME/.poetry/bin:$PATH"
+fi
+
+if [ -d "$HOME/.nvm" ]; then
+    export NVM_DIR="$HOME/.nvm"
+    # slow why!
+    #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
+
 function kbash () {
     kubectl exec $@ -it env COLUMNS=$(tput cols) LINES=$(tput lines) TERM=xterm bash
 }
@@ -102,5 +115,4 @@ function k8sdashboardtoken () {
         token=$(microk8s.kubectl -n kube-system get secret | grep default-token | cut -d " " -f1) && microk8s.kubectl -n kube-system describe secret $token
 }
 
-export PATH=$PATH:~/.local/bin/
 export EDITOR='vim'
