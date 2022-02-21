@@ -1,0 +1,9 @@
+caption always '%{=b Y}%c:%s [%l] )>%{=b b} %-Lw %{ Br}%n%f* %t%{-} %+Lw'
+
+# use xterm scroolback buffer
+# termcapinfo xterm|xterms|xs|rxvt ti@:te@
+termcapinfo xterm* ti@:te@
+# bind Shift+PgUp/PgDn
+#bindkey -m "^[[5;2~" stuff ^b
+#bindkey -m "^[[6;2~" stuff ^f
+
