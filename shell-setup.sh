@@ -8,20 +8,20 @@ alias no-lc-env='unset $(env | grep LC_ | cut -f 1 -d '=' | xargs)'
 alias p='makepasswd --count=5 --minchars=12 --maxchars=12'
 
 if ! command -v exa &> /dev/null; then
-    printf "Install exa https://github.com/ogham/exa/releases"
+    printf "Install exa https://github.com/ogham/exa/releases\n"
 else
     alias ls='exa --icons --group-directories-first -lag --git'
     alias a="exa -abghl --git --color=automatic"
 fi
 
 if [ ! -f /usr/lib/python3/dist-packages/pygments/cmdline.py ]; then
-    printf "Install pygments; sudo apt install python3-pygments"
+    printf "Install pygments; sudo apt install python3-pygments\n"
 else
     alias c='/usr/bin/python3 -c "from pygments.cmdline import main; main()" -O style=paraiso-dark -f console256 -g'
 fi
 
 if ! command -v keychain &> /dev/null; then
-    printf "Install keychain; sudo apt install keychain"
+    printf "Install keychain; sudo apt install keychain\n"
 else
     keychain -q --nogui $HOME/.ssh/id_rsa
     source $HOME/.keychain/$HOST-sh
@@ -40,7 +40,7 @@ else
 fi
 
 if ! command -v starship &> /dev/null; then
-    printf "Install starship; sh -c \"\$(curl -fsSL https://starship.rs/install.sh)\""
+    printf "Install starship; sh -c \"\$(curl -fsSL https://starship.rs/install.sh)\"\n"
 else
     eval "$(starship init $shell_variant)"
 fi
