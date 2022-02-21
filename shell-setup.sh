@@ -33,6 +33,7 @@ function set_win_title() {
 
 if [ -n "$BASH_VERSION" ]; then
     shell_variant="bash"
+    printf "Install zsh; sudo apt install zsh; sh -c \"\$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\""
 else
     shell_variant="zsh"
 
