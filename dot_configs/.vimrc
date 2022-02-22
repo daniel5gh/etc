@@ -5,7 +5,6 @@ set showmatch
 set wildmenu
 set showcmd
 set ai
-colorscheme torte
 
 autocmd FileType python set tabstop=4 shiftwidth=4 expandtab softtabstop=4
 autocmd FileType python let python_highlight_all = 1
