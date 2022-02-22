@@ -1,11 +1,16 @@
 # syntax: bash
 
+set +x
+
 export PATH="$HOME/.local/bin:$PATH"
+
+plugins+=(git zsh-autosuggestions zsh-syntax-highlighting poetry)
 
 alias nuke-pyc='find ./$(git rev-parse --show-cdup) -name "*.pyc" -delete'
 #alias gl='git log --pretty=oneline'
 alias no-lc-env='unset $(env | grep LC_ | cut -f 1 -d '=' | xargs)'
 alias p='makepasswd --count=5 --minchars=12 --maxchars=12'
+alias codes="cd $HOME/codes"
 
 if ! command -v exa &> /dev/null; then
     printf "Install exa https://github.com/ogham/exa/releases\n"
@@ -119,3 +124,4 @@ function k8sdashboardtoken () {
 }
 
 export EDITOR='vim'
+
