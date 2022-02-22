@@ -23,8 +23,10 @@ fi
 if ! command -v keychain &> /dev/null; then
     printf "Install keychain; sudo apt install keychain\n"
 else
-    keychain -q --nogui $HOME/.ssh/id_rsa
-    source $HOME/.keychain/$HOST-sh
+    if [ -z "$SSH_AUTH_SOCK" ]; then
+        keychain -q --nogui $HOME/.ssh/id_rsa
+        source $HOME/.keychain/$HOST-sh
+    fi
 fi
 
 function set_win_title() {
