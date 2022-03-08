@@ -4,7 +4,15 @@ set +x
 
 export PATH="$HOME/.local/bin:$PATH"
 
-plugins+=(git zsh-autosuggestions zsh-syntax-highlighting poetry)
+# FIX: these do not work from theme
+plugins=(
+    git
+    zsh-completions
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    poetry
+    gcloud
+)
 
 alias nuke-pyc='find ./$(git rev-parse --show-cdup) -name "*.pyc" -delete'
 #alias gl='git log --pretty=oneline'
@@ -62,14 +70,12 @@ if [ -d "$HOME/google-cloud-sdk" ]; then
 fi
 
 if command -v kubectl &> /dev/null; then
-    kubectl completion $shell_variant > "$HOME/.${shell_variant}-completion-kubectl"
-    source "$HOME/.${shell_variant}-completion-kubectl"
+    source <(kubectl completion $shell_variant)
     alias k-use-context-minikube='kubectl config use-context minikube'
 fi
 
 if command -v helm &> /dev/null; then
-    helm completion $shell_variant > "$HOME/.${shell_variant}-completion-helm"
-    source "$HOME/.${shell_variant}-completion-helm"
+    source <(helm completion $shell_variant)
 fi
 
 if [ -d "$HOME/.pyenv" ]; then
@@ -127,3 +133,7 @@ function k8sdashboardtoken () {
 
 export EDITOR='vim'
 
+if [ -d "$HOME/.dotnet" ]; then
+	export DOTNET_ROOT=$HOME/.dotnet
+	export PATH=$DOTNET_ROOT:$DOTNET_ROOT/tools:$PATH
+fi
